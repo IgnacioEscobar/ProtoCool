@@ -1,0 +1,8 @@
+{
+	"nombre":"SOLICITUDPROCESAMIENTO",
+	"campos":[
+		["uint16_t","tamanio_nombreArchivo"],
+		["char*" ,"nombreArchivo" ]
+	]
+
+}
