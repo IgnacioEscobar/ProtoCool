@@ -1,0 +1,123 @@
+{
+    "mensajes":[
+        {
+            "nombre":"SOLICITUD_PROCESAMIENTO",
+            "campos":[
+                ["uint16_t","tamanio_nombreArchivo"],
+                ["char*" ,"nombreArchivo" ]
+            ]
+        },
+        {
+            "nombre":"SOLICITUD_REDUCCIONLOCAL",
+            "campos":[
+            ]
+        },
+        {
+            "nombre":"SOLICITUD_REDUCCIONGLOBAL",
+            "campos":[
+            ]
+        },
+        {
+            "nombre":"SOLICITUD_ALMACENAMIENTO",
+            "campos":[
+            ]
+        },
+        {
+            "nombre":"ORDEN_TRANSFORMACION",
+            "campos":[
+                ["uint16_t","bloque"],
+                ["uint32_t","bytesocupados"],
+                ["uint16_t","tamanio_nombreArchivoTemporal"],
+                ["char*" ,"nombreArchivoTemporal" ]
+            ]
+        },
+        {
+            "nombre":"ORDEN_REDUCCIONLOCAL",
+            "campos":[
+                ["uint16_t","tamanio_nombreTemporal_Transformacion"],
+                ["char*" ,"nombreTemporal_Transformacion" ],
+                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["char*" ,"nombreTemporal_ReduccionLocal" ]
+            ]
+        },
+        {
+            "nombre":"ORDEN_REDUCCIONGLOBAL",
+            "campos":[
+                ["uint16_t","PUERTO_Nodo"],
+                ["uint16_t","tamanio_IP_Nodo"],
+                ["char*" ,"IP_Nodo" ],
+                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["char*" ,"nombreTemporal_ReduccionLocal" ],
+                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["char*" ,"nombreTemporal_ReduccionGlobal" ],
+                ["uint16_t","encargado"]
+            ]
+        },
+        {
+            "nombre":"ORDEN_ALMACENAMIENTO",
+            "campos":[
+                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["char*" ,"nombreTemporal_ReduccionGlobal" ]
+            ]
+        },
+        {
+            "nombre":"INFO_TRANSFORMACION",
+            "campos":[
+                ["uint16_t","PUERTO_Worker"],
+                ["uint16_t","tamanio_IP_Worker"],
+                ["char*" ,"IP_Worker" ],
+                ["uint16_t","bloque"],
+                ["uint32_t","bytesocupados"],
+                ["uint16_t","tamanio_nombreArchivoTemporal"],
+                ["char*" ,"nombreArchivoTemporal" ]
+            ]
+        },
+        {
+            "nombre":"INFO_REDUCCIONLOCAL",
+            "campos":[
+                ["uint16_t","PUERTO_Worker"],
+                ["uint16_t","tamanio_IP_Worker"],
+                ["char*" ,"IP_Worker" ],
+                ["uint16_t","tamanio_nombreTemporal_Transformacion"],
+                ["char*" ,"nombreTemporal_Transformacion" ],
+                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["char*" ,"nombreTemporal_ReduccionLocal" ]
+            ]
+        },
+        {
+            "nombre":"INFO_REDUCCIONGLOBAL",
+            "campos":[
+                ["uint16_t","PUERTO_Worker"],
+                ["uint16_t","tamanio_IP_Worker"],
+                ["char*" ,"IP_Worker" ],
+                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["char*" ,"nombreTemporal_ReduccionLocal" ],
+                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["char*" ,"nombreTemporal_ReduccionGlobal" ],
+                ["uint16_t","encargado"]
+            ]
+        },
+        {
+            "nombre":"INFO_ALMACENAMIENTO",
+            "campos":[
+                ["uint16_t","PUERTO_Worker"],
+                ["uint16_t","tamanio_IP_Worker"],
+	        ["char*" ,"IP_Worker" ],
+                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["char*" ,"nombreTemporal_ReduccionGlobal" ]
+            ]
+        },
+        {
+            "nombre":"FIN_LISTA",
+            "campos":[
+            ]
+        },
+	{
+            "nombre":"FIN_COMUNICACION",
+            "campos":[
+            ]
+        }
+
+    ]
+
+}

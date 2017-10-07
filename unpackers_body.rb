@@ -4,43 +4,50 @@ includes =%{
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include "types.h"
 
 }
 print includes
-# Nombres de los ficheros que contienen los mensajes
-mensajes = Dir.glob("mensajes/*") 
 
-#Por cada fichero en la carpeta mensajes creamos una funcion de empaquetado
+# Seleccionar la base de conocimiento y parsear JSON
+file = File.read("baseConocimiento.json")
+hash = JSON.parse(file)
+mensajes = hash["mensajes"]
+
+#Por cada mensaje creamos una funcion de empaquetado
 mensajes.each do |mensaje|
-	# Seleccionar el fichero y parsear JSON
-	file = File.read(mensaje)
-	hash = JSON.parse(file)
-	
-	# Obtener los datos
-	nombre = hash["nombre"]
-	campos = hash["campos"]
 
-	# Cabecera de la funcion
-	puts "void* unpack_#{nombre}(int socket){"
-	puts "    payload_#{nombre} payload;"
-	# Cargar la struct del payload	
-	campos.each do |campo|
-		tipo = campo[0]
-		nombreCampo = campo[1]
-		if tipo[-1] != "*"
-			puts "    recv(socket,&(payload.#{nombreCampo}),sizeof(#{tipo}),NULL);"
-			if nombreCampo[0 .. 7] == "tamanio_"
-				puts "    int #{nombreCampo} = payload.#{nombreCampo}"
+	if mensaje["campos"].length !=0	
+		# Obtener los datos
+		nombre = mensaje["nombre"]
+		campos = mensaje["campos"]
+
+		# Cabecera de la funcion
+		puts "void* unpack_#{nombre}(int socket){"
+		puts "    payload_#{nombre} *payload= malloc(sizeof(payload_#{nombre}));"
+		print "\n"
+		# Cargar la struct del payload	
+		campos.each do |campo|
+			tipo = campo[0]
+			nombreCampo = campo[1]
+			if tipo[-1] != "*" # CASO 0: Guardar en el stack
+				puts "    recv(socket,&(payload->#{nombreCampo}),sizeof(#{tipo}),0);"
+				if nombreCampo[0 .. 7] == "tamanio_" # Si ademas es un campo centinela de serializacion
+					puts "    #{tipo}  #{nombreCampo} = payload->#{nombreCampo};" # Me lo guardo
+				end
+			else               # CASO 1: Guardar en el heap
+				puts "    char* #{nombreCampo} = malloc(tamanio_#{nombreCampo});" # Alocar memoria
+				puts "    recv(socket,#{nombreCampo},tamanio_#{nombreCampo},0);"  # Recibir campo
+				puts "    payload->#{nombreCampo} = #{nombreCampo};"            # Asignarlo a la payload
 			end
-		else
-			puts "    recv(socket,&(payload.#{nombreCampo}),tamanio_#{nombreCampo},NULL);"
-		end
-	end	
-	# Indireccion, casteo y retorno de la payload
-	puts "    void * retorno = (void*)(&payload);"
-	puts "    return retorno;"
-	puts "};\n\n" 
-
+			print "\n"
+		end	
+		# Indireccion, casteo y retorno de la payload
+		puts "    return (void*)payload;"
+		puts "};\n\n" 
+	end
 end
 
 

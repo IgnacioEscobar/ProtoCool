@@ -1,53 +1,65 @@
 require 'json'
+# Wrapper
+wrapper =%{
+#ifndef UTILIDADES_PROTOCOL_TYPES_H_
+#define UTILIDADES_PROTOCOL_TYPES_H_
+}
+print wrapper
+
 # Includes
 includes =%{
 #include <stdint.h>
 
 }
 print includes
-# Nombres de los ficheros que contienen los mensajes
-mensajes = Dir.glob("mensajes/*") 
+# Seleccionar la base de conocimiento y parsear JSON
+file = File.read("baseConocimiento.json")
+hash = JSON.parse(file)
+mensajes = hash["mensajes"]
 
 # Definicion del tipo de datos de la cabecera
-print "typedef enum{"
+print "typedef enum {"
 mensajes.each do |mensaje|
-	# Seleccionar el fichero y parsear JSON
-	file = File.read(mensaje)
-	hash = JSON.parse(file)
-	
+
 	# Obtener los datos
-	nombre = hash["nombre"]
+	nombre = mensaje["nombre"]
 	print "#{nombre}"
 	unless mensajes[-1] == mensaje
 		print ", "
 	end	
 end
-puts "}t_Mensaje;\n\n"
+puts "}HEADER_T;\n\n"
 
-# Por cada fichero en la carpeta mensajes creamos un struct
+
+# Seleccionar la base de conocimiento y parsear JSON
+file = File.read("baseConocimiento.json")
+hash = JSON.parse(file)
+mensajes = hash["mensajes"]
+
+#Por cada mensaje creamos una funcion de empaquetado
 mensajes.each do |mensaje|
 
-	# Seleccionar el fichero y parsear JSON
-	file = File.read(mensaje)
-	hash = JSON.parse(file)
-	
 	# Obtener los datos
-	nombre = hash["nombre"]
-	campos = hash["campos"]
-
+	nombre = mensaje["nombre"]
+	campos = mensaje["campos"]
 	# Cabecera del struct
 	puts "typedef struct { \n"
 
 	# Loop que crea los campos del struct
 	campos.each do |campo|
-		tipo        =  campo[0]
-		nombreCampo =  campo[1]
+		tipo        =  campo.first
+		nombreCampo =  campo.last
 		puts "    #{tipo} #{nombreCampo}; \n"
 	end
 
 	# Fin de la definicion del struct
 	puts "}payload_#{nombre};\n\n" 
-
 end
+
+# Wrapper
+wrapper =%{
+#endif /* UTILIDADES_PROTOCOL_TYPES_H_ */
+}
+print wrapper
 
 

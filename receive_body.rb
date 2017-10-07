@@ -4,34 +4,47 @@ includes =%{
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include "types.h"
+#include "unpackers.h"
 
 }
 print includes
 # Cabecera de la funcion
-puts "void* receive(int socket,t_Mensaje* cabecera){"
+puts "void* receive(int socket,HEADER_T* cabecera){"
 puts "    void* payload;"
 
 # Recibir header
-puts "    t_Mensaje header;"
-puts "    recv(socket,&header,sizeof(t_Mensaje),NULL);"
+puts "    HEADER_T header;"
+puts "    int status = recv(socket,&header,sizeof(HEADER_T),0);"
+puts "    if(!status){"
+puts "         (*cabecera) = FIN_COMUNICACION;"
+puts "         return NULL;"
+puts "    }"
 
 # Switch de packs
 puts "    switch(header){"
 	
-# Nombres de los ficheros que contienen los mensajes
-mensajes = Dir.glob("mensajes/*")
+# Seleccionar la base de conocimiento y parsear JSON
+file = File.read("baseConocimiento.json")
+hash = JSON.parse(file)
+mensajes = hash["mensajes"]
 
+#Por cada mensaje creamos un caso
 mensajes.each do |mensaje|
-        # Seleccionar el fichero y parsear JSON
-        file = File.read(mensaje)
-        hash = JSON.parse(file)
 
         # Generar casos del switch
-        nombre = hash["nombre"]
+       nombre = mensaje["nombre"]
 	puts "        case #{nombre}:"
-	puts "        payload = unpack_#{nombre}(socket);"
+	if mensaje["campos"].length != 0
+		puts "        payload = unpack_#{nombre}(socket);"
+	else
+		puts "        /* Carece de Payload */"
+	end
         puts "        break;"
 end
 puts "    }" #Fin de switch
+puts "    (*cabecera) = header;"
 puts "    return payload;"
 puts "}"
