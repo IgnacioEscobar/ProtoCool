@@ -107,6 +107,23 @@
                 ["char*" ,"nombreTemporal_ReduccionGlobal" ]
             ]
         },
+	{
+            "nombre":"PETICION_NODO",
+            "campos":[
+                ["uint16_t","tamanio_nombreArchivo"],
+                ["char*" ,"nombreArchivo" ]
+            ]
+        },
+	{
+            "nombre":"NODO",
+            "campos":[
+                ["uint16_t","PUERTO_Nodo"],
+                ["uint16_t","tamanio_IP_Nodo"],
+	        ["char*" ,"IP_Nodo" ],
+                ["uint16_t","tamanio_nombreNodo"],
+                ["char*" ,"nombreNodo" ]
+            ]
+        },
         {
             "nombre":"FIN_LISTA",
             "campos":[
@@ -116,7 +133,17 @@
             "nombre":"FIN_COMUNICACION",
             "campos":[
             ]
-        }
+        },
+	{
+            "nombre":"ARCHIVO",
+            "custom":true,
+            "campos":[
+                ["uint64_t","tamanio_archivo"],
+	        ["char*" ,"archivo" ]
+            ],
+            "send_proto":"void send_ARCHIVO(int socket , int archivo_fd)"
+        } 
+
 
     ]
 

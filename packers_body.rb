@@ -13,9 +13,9 @@ print includes
 file = File.read("baseConocimiento.json")
 hash = JSON.parse(file)
 mensajes = hash["mensajes"]
-
+## MENSAJES NORMALIZADOS
+(mensajes.select {|msg| msg["custom"]!=true}).each do |mensaje|
 #Por cada mensaje creamos una funcion de empaquetado
-mensajes.each do |mensaje|
 
 	
 	# Obtener los datos

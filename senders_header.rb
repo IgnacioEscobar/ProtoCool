@@ -24,23 +24,26 @@ mensajes = hash["mensajes"]
 #Por cada mensaje creamos una funcion de empaquetado
 mensajes.each do |mensaje|
 
-	
-	# Obtener los datos
-	nombre = mensaje["nombre"]
-	campos = mensaje["campos"]
+        if mensaje["custom"] != true	
+		# Obtener los datos
+		nombre = mensaje["nombre"]
+		campos = mensaje["campos"]
 
-	# Cabecera de la funcion
-	print "void send_#{nombre}(int socket "
-	# Loop para decidir que campos se pasan al sender
-	campos.each do |campo|
-		tipo = campo[0]
-		nombreCampo = campo[1]
-		unless nombreCampo[0 .. 7] == "tamanio_" # Se toman como parametros todos aquellos que no sean de tamaño
-			print " , "																
-			print "#{tipo} #{nombreCampo}"
+		# Cabecera de la funcion
+		print "void send_#{nombre}(int socket "
+		# Loop para decidir que campos se pasan al sender
+		campos.each do |campo|
+			tipo = campo[0]
+			nombreCampo = campo[1]
+			unless nombreCampo[0 .. 7] == "tamanio_" # Se toman como parametros todos aquellos que no sean de tamaño
+				print " , "																
+				print "#{tipo} #{nombreCampo}"
+			end
 		end
+		print ");\n"
+	else
+		print "#{mensaje["send_proto"]};\n"
 	end
-	print ");\n"
 
 end
 
