@@ -1,25 +1,10 @@
 {
     "mensajes":[
         {
-            "nombre":"SOLICITUD_PROCESAMIENTO",
+            "nombre":"SOLICITUD_JOB",
             "campos":[
                 ["uint16_t","tamanio_nombreArchivo"],
                 ["char*" ,"nombreArchivo" ]
-            ]
-        },
-        {
-            "nombre":"SOLICITUD_REDUCCIONLOCAL",
-            "campos":[
-            ]
-        },
-        {
-            "nombre":"SOLICITUD_REDUCCIONGLOBAL",
-            "campos":[
-            ]
-        },
-        {
-            "nombre":"SOLICITUD_ALMACENAMIENTO",
-            "campos":[
             ]
         },
         {
@@ -142,8 +127,61 @@
 	        ["char*" ,"archivo" ]
             ],
             "send_proto":"void send_ARCHIVO(int socket , int archivo_fd)"
-        } 
-
+        },
+	{
+            "nombre":"BLOQUE",
+            "custom":true,
+            "campos":[
+                ["uint64_t","tamanio_bloque"],
+	        ["char*" ,"bloque" ],
+		["uint32_t","id_bloque"]
+            ],
+            "send_proto":"void send_BLOQUE(int socket, uint64_t tamanio_bloque, char* bloque, uint32_t id_bloque)"
+        },
+	{
+            "nombre":"PRESENTACION_DATANODE",
+            "campos":[
+                ["uint16_t","PUERTO_dataNode"],
+                ["uint16_t","tamanio_IP_dataNode"],
+	        ["char*" ,"IP_dataNode" ],
+		["uint16_t","pid"],
+                ["uint16_t","id_dataNode"],
+		["uint16_t","cantidad_bloques"]
+            ]
+        },	
+	{
+            "nombre":"JOB",
+            "campos":[
+		["uint16_t","id_master"],
+                ["uint16_t","cantidad_operaciones"]
+            ]
+        },
+	{
+            "nombre":"RESPUESTA_MASTER",
+            "campos":[
+                ["uint16_t","id_master"],
+		["uint16_t","id_nodo"],
+		["uint16_t","bloque"],
+		["uint16_t","estado"]
+            ]
+        },
+	{
+            "nombre":"EXITO_OPERACION",
+            "campos":[
+            ]
+        },
+	{
+            "nombre":"FRACASO_OPERACION",
+            "campos":[
+            ]
+        },
+        {
+            "nombre":"SCRIPT",
+            "campos":[
+                ["uint16_t","tamanio_contenido"],
+                ["char*" ,"contenido" ]
+            ]
+        }
 
     ]
 
