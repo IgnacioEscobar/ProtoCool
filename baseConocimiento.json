@@ -133,17 +133,14 @@
             "custom":true,
             "campos":[
                 ["uint64_t","tamanio_bloque"],
-	        ["char*" ,"bloque" ],
-		["uint32_t","id_bloque"]
+	        ["char*" ,"contenido" ],
+		["uint32_t","numero_bloque"]
             ],
             "send_proto":"void send_BLOQUE(int socket, uint64_t tamanio_bloque, char* bloque, uint32_t id_bloque)"
         },
 	{
             "nombre":"PRESENTACION_DATANODE",
             "campos":[
-                ["uint16_t","PUERTO_dataNode"],
-                ["uint16_t","tamanio_IP_dataNode"],
-	        ["char*" ,"IP_dataNode" ],
 		["uint16_t","pid"],
                 ["uint16_t","id_dataNode"],
 		["uint16_t","cantidad_bloques"]
@@ -152,8 +149,7 @@
 	{
             "nombre":"JOB",
             "campos":[
-		["uint16_t","id_master"],
-                ["uint16_t","cantidad_operaciones"]
+		["uint16_t","id_master"]
             ]
         },
 	{
@@ -180,6 +176,12 @@
             "campos":[
                 ["uint16_t","tamanio_contenido"],
                 ["char*" ,"contenido" ]
+            ]
+        },
+	{
+            "nombre":"PETICION_BLOQUE",
+            "campos":[
+		["uint32_t","numero_bloque"]
             ]
         }
 

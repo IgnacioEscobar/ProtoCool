@@ -1,59 +1,27 @@
 clear
 echo "Generando fuente ..."
 # Generador de <packers.c>
-echo "/*
- * packers.c
- * Generado automaticamente por ProtoCool
-*/"> source/packers.c
 ruby packers_body.rb >> source/packers.c
 
 # Generador de <senders.c>
-echo "/*
- * senders.c
- * Generado automaticamente por ProtoCool
-*/"> source/senders.c
 ruby senders_body.rb >> source/senders.c
 
 # Generador de <unpackers.c>
-echo "/*
- * unpackers.c
- * Generado automaticamente por ProtoCool
-*/">source/unpackers.c
 ruby unpackers_body.rb >> source/unpackers.c
 
 # Generador de <receive.c>
-echo "/*
- * receive.c
- * Generado automaticamente por ProtoCool
-*/"> source/receive.c
 ruby receive_body.rb >> source/receive.c
 
 # Generador de <packers.h>
-echo "/*
- * packers.h
- * Generado automaticamente por ProtoCool
-*/"> source/packers.h
 ruby packers_header.rb >> source/packers.h
 
 # Generador de <senders.h>
-echo "/*
- * senders.h
- * Generado automaticamente por ProtoCool
-*/"> source/senders.h
 ruby senders_header.rb >> source/senders.h
 
 # Generador de <unpackers.h>
-echo "/*
- * unpackers.h
- * Generado automaticamente por ProtoCool
-*/">source/unpackers.h
 ruby unpackers_header.rb >> source/unpackers.h
 
 # Generador de <types.h>
-echo "/*
- * types.h
- * Generado automaticamente por ProtoCool
-*/"> source/types.h
 ruby TAD_header!.rb >> source/types.h
 
 echo "Codigo fuente generado"
