@@ -181,7 +181,8 @@
 	{
             "nombre":"PETICION_BLOQUE",
             "campos":[
-		["int","numero_bloque"]
+		["int","numero_bloque"],
+		["int","tam_bloque"]
             ]
         },
 	{

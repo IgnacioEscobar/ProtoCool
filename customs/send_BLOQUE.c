@@ -10,15 +10,15 @@ void send_BLOQUE(int socket, int tamanio_bloque, char* bloque, int id_bloque){
 	offset += sizeof(HEADER_T);
 
 	memcpy(paquete+offset,&tamanio_bloque,sizeof(int));
-	offset += sizeof(uint64_t);
+	offset += sizeof(int);
 
 	memcpy(paquete+offset,bloque,tamanio_bloque);
 	offset += tamanio_bloque;
 
 	memcpy(paquete+offset,&id_bloque,sizeof(int));
 	offset += sizeof(int);
-
-	enviar_paquete(paquete,offset);
+	
+	enviar_paquete(socket,paquete,offset);
 
 	free(paquete);
 
