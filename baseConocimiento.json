@@ -183,6 +183,15 @@
             "campos":[
 		["int","numero_bloque"]
             ]
+        },
+	{
+            "nombre":"UBICACION_BLOQUE",
+            "campos":[
+		["int","numero_nodo"],
+		["int","bloque_nodo"],
+		["int","bloque_archivo"],
+		["int","copia"]
+            ]
         }
 
     ]
