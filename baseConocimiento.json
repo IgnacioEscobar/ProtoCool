@@ -3,109 +3,109 @@
         {
             "nombre":"SOLICITUD_JOB",
             "campos":[
-                ["uint16_t","tamanio_nombreArchivo"],
+                ["int","tamanio_nombreArchivo"],
                 ["char*" ,"nombreArchivo" ]
             ]
         },
         {
             "nombre":"ORDEN_TRANSFORMACION",
             "campos":[
-                ["uint16_t","bloque"],
-                ["uint32_t","bytesocupados"],
-                ["uint16_t","tamanio_nombreArchivoTemporal"],
+                ["int","bloque"],
+                ["int","bytesocupados"],
+                ["int","tamanio_nombreArchivoTemporal"],
                 ["char*" ,"nombreArchivoTemporal" ]
             ]
         },
         {
             "nombre":"ORDEN_REDUCCIONLOCAL",
             "campos":[
-                ["uint16_t","tamanio_nombreTemporal_Transformacion"],
+                ["int","tamanio_nombreTemporal_Transformacion"],
                 ["char*" ,"nombreTemporal_Transformacion" ],
-                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["int","tamanio_nombreTemporal_ReduccionLocal"],
                 ["char*" ,"nombreTemporal_ReduccionLocal" ]
             ]
         },
         {
             "nombre":"ORDEN_REDUCCIONGLOBAL",
             "campos":[
-                ["uint16_t","PUERTO_Nodo"],
-                ["uint16_t","tamanio_IP_Nodo"],
+                ["int","PUERTO_Nodo"],
+                ["int","tamanio_IP_Nodo"],
                 ["char*" ,"IP_Nodo" ],
-                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["int","tamanio_nombreTemporal_ReduccionLocal"],
                 ["char*" ,"nombreTemporal_ReduccionLocal" ],
-                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["int","tamanio_nombreTemporal_ReduccionGlobal"],
                 ["char*" ,"nombreTemporal_ReduccionGlobal" ],
-                ["uint16_t","encargado"]
+                ["int","encargado"]
             ]
         },
         {
             "nombre":"ORDEN_ALMACENAMIENTO",
             "campos":[
-                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["int","tamanio_nombreTemporal_ReduccionGlobal"],
                 ["char*" ,"nombreTemporal_ReduccionGlobal" ]
             ]
         },
         {
             "nombre":"INFO_TRANSFORMACION",
             "campos":[
-                ["uint16_t","PUERTO_Worker"],
-                ["uint16_t","tamanio_IP_Worker"],
+                ["int","PUERTO_Worker"],
+                ["int","tamanio_IP_Worker"],
                 ["char*" ,"IP_Worker" ],
-                ["uint16_t","bloque"],
-                ["uint32_t","bytesocupados"],
-                ["uint16_t","tamanio_nombreArchivoTemporal"],
+                ["int","bloque"],
+                ["int","bytesocupados"],
+                ["int","tamanio_nombreArchivoTemporal"],
                 ["char*" ,"nombreArchivoTemporal" ]
             ]
         },
         {
             "nombre":"INFO_REDUCCIONLOCAL",
             "campos":[
-                ["uint16_t","PUERTO_Worker"],
-                ["uint16_t","tamanio_IP_Worker"],
+                ["int","PUERTO_Worker"],
+                ["int","tamanio_IP_Worker"],
                 ["char*" ,"IP_Worker" ],
-                ["uint16_t","tamanio_nombreTemporal_Transformacion"],
+                ["int","tamanio_nombreTemporal_Transformacion"],
                 ["char*" ,"nombreTemporal_Transformacion" ],
-                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["int","tamanio_nombreTemporal_ReduccionLocal"],
                 ["char*" ,"nombreTemporal_ReduccionLocal" ]
             ]
         },
         {
             "nombre":"INFO_REDUCCIONGLOBAL",
             "campos":[
-                ["uint16_t","PUERTO_Worker"],
-                ["uint16_t","tamanio_IP_Worker"],
+                ["int","PUERTO_Worker"],
+                ["int","tamanio_IP_Worker"],
                 ["char*" ,"IP_Worker" ],
-                ["uint16_t","tamanio_nombreTemporal_ReduccionLocal"],
+                ["int","tamanio_nombreTemporal_ReduccionLocal"],
                 ["char*" ,"nombreTemporal_ReduccionLocal" ],
-                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["int","tamanio_nombreTemporal_ReduccionGlobal"],
                 ["char*" ,"nombreTemporal_ReduccionGlobal" ],
-                ["uint16_t","encargado"]
+                ["int","encargado"]
             ]
         },
         {
             "nombre":"INFO_ALMACENAMIENTO",
             "campos":[
-                ["uint16_t","PUERTO_Worker"],
-                ["uint16_t","tamanio_IP_Worker"],
+                ["int","PUERTO_Worker"],
+                ["int","tamanio_IP_Worker"],
 	        ["char*" ,"IP_Worker" ],
-                ["uint16_t","tamanio_nombreTemporal_ReduccionGlobal"],
+                ["int","tamanio_nombreTemporal_ReduccionGlobal"],
                 ["char*" ,"nombreTemporal_ReduccionGlobal" ]
             ]
         },
 	{
             "nombre":"PETICION_NODO",
             "campos":[
-                ["uint16_t","tamanio_nombreArchivo"],
+                ["int","tamanio_nombreArchivo"],
                 ["char*" ,"nombreArchivo" ]
             ]
         },
 	{
             "nombre":"NODO",
             "campos":[
-                ["uint16_t","PUERTO_Nodo"],
-                ["uint16_t","tamanio_IP_Nodo"],
+                ["int","PUERTO_Nodo"],
+                ["int","tamanio_IP_Nodo"],
 	        ["char*" ,"IP_Nodo" ],
-                ["uint16_t","tamanio_nombreNodo"],
+                ["int","tamanio_nombreNodo"],
                 ["char*" ,"nombreNodo" ]
             ]
         },
@@ -123,7 +123,7 @@
             "nombre":"ARCHIVO",
             "custom":true,
             "campos":[
-                ["uint64_t","tamanio_archivo"],
+                ["int","tamanio_archivo"],
 	        ["char*" ,"archivo" ]
             ],
             "send_proto":"void send_ARCHIVO(int socket , int archivo_fd)"
@@ -132,33 +132,33 @@
             "nombre":"BLOQUE",
             "custom":true,
             "campos":[
-                ["uint64_t","tamanio_bloque"],
+                ["int","tamanio_bloque"],
 	        ["char*" ,"contenido" ],
-		["uint32_t","numero_bloque"]
+		["int","numero_bloque"]
             ],
-            "send_proto":"void send_BLOQUE(int socket, uint64_t tamanio_bloque, char* bloque, uint32_t id_bloque)"
+            "send_proto":"void send_BLOQUE(int socket, int tamanio_bloque, char* bloque, int id_bloque)"
         },
 	{
             "nombre":"PRESENTACION_DATANODE",
             "campos":[
-		["uint16_t","pid"],
-                ["uint16_t","id_dataNode"],
-		["uint16_t","cantidad_bloques"]
+		["int","pid"],
+                ["int","id_dataNode"],
+		["int","cantidad_bloques"]
             ]
         },	
 	{
             "nombre":"JOB",
             "campos":[
-		["uint16_t","id_master"]
+		["int","id_master"]
             ]
         },
 	{
             "nombre":"RESPUESTA_MASTER",
             "campos":[
-                ["uint16_t","id_master"],
-		["uint16_t","id_nodo"],
-		["uint16_t","bloque"],
-		["uint16_t","estado"]
+                ["int","id_master"],
+		["int","id_nodo"],
+		["int","bloque"],
+		["int","estado"]
             ]
         },
 	{
@@ -174,14 +174,14 @@
         {
             "nombre":"SCRIPT",
             "campos":[
-                ["uint16_t","tamanio_contenido"],
+                ["int","tamanio_contenido"],
                 ["char*" ,"contenido" ]
             ]
         },
 	{
             "nombre":"PETICION_BLOQUE",
             "campos":[
-		["uint32_t","numero_bloque"]
+		["int","numero_bloque"]
             ]
         }
 
