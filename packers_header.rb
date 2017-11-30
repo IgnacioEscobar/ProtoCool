@@ -22,7 +22,7 @@ hash = JSON.parse(file)
 mensajes = hash["mensajes"]
 
 #Por cada mensaje creamos una funcion de empaquetado
-(mensajes.select {|msg| msg["custom"]!=true}).each do |mensaje|
+mensajes.each do |mensaje|
 
 	
 	# Obtener los datos

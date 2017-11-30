@@ -67,3 +67,9 @@ mensajes = hash["mensajes"]
 	puts "};\n\n" 
 
 end
+(mensajes.select {|msg| msg["custom"]==true}).each do |mensaje|
+	File.open("customs/pack_#{mensaje["nombre"]}.c").each do |linea|
+		puts linea
+	end
+end
+

@@ -193,6 +193,20 @@
 		["int","bloque_archivo"],
 		["int","copia"]
             ]
+        },
+        {
+            "nombre":"TEMPORAL",
+            "campos":[
+                ["int","tamanio_contenido"],
+                ["char*" ,"contenido" ]
+            ]
+        },
+        {
+            "nombre":"PETICION_TEMPORAL",
+            "campos":[
+                ["int","tamanio_nombre"],
+                ["char*" ,"nombre" ]
+            ]
         }
 
     ]
