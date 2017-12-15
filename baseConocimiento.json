@@ -54,7 +54,8 @@
                 ["int","bloque"],
                 ["int","bytesocupados"],
                 ["int","tamanio_nombreArchivoTemporal"],
-                ["char*" ,"nombreArchivoTemporal" ]
+                ["char*" ,"nombreArchivoTemporal" ],
+                ["int","ID_Nodo"]
             ]
         },
         {
@@ -66,7 +67,8 @@
                 ["int","tamanio_nombreTemporal_Transformacion"],
                 ["char*" ,"nombreTemporal_Transformacion" ],
                 ["int","tamanio_nombreTemporal_ReduccionLocal"],
-                ["char*" ,"nombreTemporal_ReduccionLocal" ]
+                ["char*" ,"nombreTemporal_ReduccionLocal" ],
+                ["int","ID_Nodo"]
             ]
         },
         {
@@ -79,7 +81,8 @@
                 ["char*" ,"nombreTemporal_ReduccionLocal" ],
                 ["int","tamanio_nombreTemporal_ReduccionGlobal"],
                 ["char*" ,"nombreTemporal_ReduccionGlobal" ],
-                ["int","encargado"]
+                ["int","encargado"],
+                ["int","ID_Nodo"]
             ]
         },
         {
@@ -89,7 +92,8 @@
                 ["int","tamanio_IP_Worker"],
 	        ["char*" ,"IP_Worker" ],
                 ["int","tamanio_nombreTemporal_ReduccionGlobal"],
-                ["char*" ,"nombreTemporal_ReduccionGlobal" ]
+                ["char*" ,"nombreTemporal_ReduccionGlobal" ],
+                ["int","ID_Nodo"]
             ]
         },
 	{
@@ -141,9 +145,10 @@
 	{
             "nombre":"PRESENTACION_DATANODE",
             "campos":[
-		["int","pid"],
                 ["int","id_dataNode"],
-		["int","cantidad_bloques"]
+		["int","cantidad_bloques"],
+                ["int","tamanio_ipDatanode"],
+	        ["char*" ,"ipDatanode" ]
             ]
         },	
 	{
@@ -188,10 +193,14 @@
 	{
             "nombre":"UBICACION_BLOQUE",
             "campos":[
+		["int","tamanio_ip"],
+		["char*","ip"],
+		["int","puerto"],
 		["int","numero_nodo"],
 		["int","bloque_nodo"],
 		["int","bloque_archivo"],
-		["int","copia"]
+		["int","copia"],
+		["int","tam_bloque"]
             ]
         },
         {
@@ -207,6 +216,26 @@
                 ["int","tamanio_nombre"],
                 ["char*" ,"nombre" ]
             ]
+        },
+	{
+            "nombre":"RECHAZO_CONEXION",
+            "campos":[
+            ]
+        },
+        {
+            "nombre":"ALMACENAR_ARCHIVO",
+            "custom":true,
+            "campos":[
+                ["int","tamanio_contenido"],
+	        ["char*" ,"contenido" ],
+                ["int","tamanio_pathDestino"],
+                ["char*" ,"pathDestino" ],
+                ["int","tamanio_nombre"],
+                ["char*" ,"nombre" ],
+		["int","tamanio_tipo"],
+                ["char*" ,"tipo" ]
+            ],
+            "send_proto":"void send_ALMACENAR_ARCHIVO(int socket, int tamanio_bloque, char* bloque, char* pathDestino,char* nombre,char* tipo)"
         }
 
     ]
