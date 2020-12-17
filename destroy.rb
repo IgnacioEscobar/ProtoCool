@@ -4,16 +4,8 @@ includes =%{
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdint.h>
-#include <string.h>
-#include <stdlib.h>
-#include "types.h"
-#include "packers.h"
 #include "enviar_paquete.h"
 #include "destroy.h"
-
 }
 print includes
 
